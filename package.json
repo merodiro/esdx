@@ -1,34 +1,21 @@
 {
-  "name": "esdx",
-  "version": "0.0.1",
-  "description": "build scripts based on esbuild",
-  "source": "src/index.ts",
-  "main": "dist/index.js",
-  "repository": "https://github.com/merodiro/esdx.git",
-  "author": "Amr Gad",
-  "license": "MIT",
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "build": "esbuild src/index.ts --outdir=dist --platform=node",
-    "dev": "esbuild src/index.ts --outdir=dist --platform=node --watch"
+    "prepare": "manypkg check",
+    "dev": "ultra -r dev",
+    "publish-local": "ultra -r yalc publish"
   },
-  "type": "module",
   "dependencies": {
-    "chalk": "^4.1.1",
-    "esbuild": "^0.12.9",
-    "esbuild-node-externals": "^1.2.0",
-    "find-up": "^5.0.0",
-    "ora": "^5.4.1",
-    "pkg-dir": "^5.0.0",
-    "rollup": "^2.52.0",
-    "rollup-plugin-dts": "^3.0.2",
-    "yargs": "^17.0.1"
-  },
-  "bin": {
-    "esdx": "./dist/index.js"
-  },
-  "devDependencies": {
-    "@types/node": "^15.12.2",
-    "@types/yargs": "^17.0.0",
-    "typescript": "^4.3.2"
+    "@changesets/cli": "^2.16.0",
+    "@manypkg/cli": "^0.17.0",
+    "husky": "^6.0.0",
+    "prettier": "^2.2.1",
+    "pretty-quick": "^3.1.0",
+    "ultra-runner": "^3.10.5",
+    "yalc": "^1.0.0-pre.53"
   }
 }

@@ -1,0 +1,48 @@
+{
+  "version": "0.1.0",
+  "name": "esdx-starter",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "type": "module",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "start": "esdx --watch",
+    "build": "esdx build",
+    "test": "jest",
+    "lint": "TODO lint",
+    "prepare": "esdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "peerDependencies": {},
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^4.12.0",
+    "husky": "^6.0.0",
+    "jest": "^27.0.4",
+    "size-limit": "^4.12.0",
+    "tslib": "^2.3.0",
+    "typescript": "^4.3.2"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "jest": {
+    "preset": "esdx"
+  }
+}

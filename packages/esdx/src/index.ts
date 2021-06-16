@@ -27,7 +27,7 @@ async function generateTypeDefs(argv) {
   const pkg = JSON.parse(
     fs.readFileSync(paths.manifest, {
       encoding: 'utf8',
-    })
+    }),
   )
 
   const rollupConfig = {
@@ -64,7 +64,7 @@ async function createBuild(argv) {
   const pkg = JSON.parse(
     fs.readFileSync(paths.manifest, {
       encoding: 'utf8',
-    })
+    }),
   )
 
   await build({
@@ -93,6 +93,6 @@ yargs(hideBin(process.argv))
     () => {},
     (argv) => {
       createBuild(argv)
-    }
+    },
   )
   .demandCommand(1).argv
