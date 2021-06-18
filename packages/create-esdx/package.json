@@ -2,18 +2,12 @@
   "name": "create-esdx",
   "version": "0.0.0",
   "main": "./index.js",
-  "scripts": {
-    "dev": "esbuild src/index.ts --outdir=dist --platform=node --watch",
-    "build": "esbuild src/index.ts --outdir=dist --platform=node"
-  },
   "author": "Amr Gad",
   "license": "MIT",
   "bin": {
     "create-esdx": "./index.js"
   },
   "dependencies": {
-    "esdx": "^0.0.1",
-    "inquirer": "^8.1.1",
     "kolorist": "^1.5.0",
     "minimist": "^1.2.5",
     "prompts": "^2.4.1"
