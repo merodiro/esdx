@@ -14,7 +14,7 @@
   "dependencies": {
     "esdx": "^0.0.1",
     "inquirer": "^8.1.1",
-    "kolorist": "^1.4.1",
+    "kolorist": "^1.5.0",
     "minimist": "^1.2.5",
     "prompts": "^2.4.1"
   },

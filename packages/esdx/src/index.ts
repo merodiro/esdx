@@ -54,6 +54,10 @@ async function generateTypeDefs(argv) {
     const spinner = ora(chalk.yellowBright('generating type defs')).start()
     const bundle = await rollup.rollup(rollupConfig)
 
+    await bundle.write({
+      file: pkg.types,
+    })
+
     await bundle.close()
     spinner.succeed()
   }
@@ -72,7 +76,6 @@ async function createBuild(argv) {
     bundle: true,
     minify: argv.minify,
     watch: argv.watch,
-    target: ['es2019'],
     format: 'esm',
     platform: 'neutral',
     plugins: [nodeExternalsPlugin()],
