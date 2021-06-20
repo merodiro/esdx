@@ -168,6 +168,8 @@ async function init() {
 
   const pkg = require(path.join(templateDir, `package.json`))
 
+  delete pkg.private
+
   pkg.name = projectName
 
   write('package.json', JSON.stringify(pkg, null, 2))
