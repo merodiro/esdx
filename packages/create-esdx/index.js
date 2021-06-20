@@ -17,8 +17,8 @@ const FRAMEWORKS = [
     variants: [
       {
         name: 'simple',
-        display: 'JavaScript',
-        color: yellow,
+        display: 'Typescript',
+        color: blue,
       },
     ],
   },
@@ -28,13 +28,13 @@ const FRAMEWORKS = [
     variants: [
       {
         name: 'react',
-        display: 'JavaScript',
-        color: yellow,
+        display: 'Typescript',
+        color: blue,
       },
       {
-        name: 'react-ts',
-        display: 'TypeScript',
-        color: blue,
+        name: 'react-with-storybook',
+        display: 'TypeScript with storybook',
+        color: magenta,
       },
     ],
   },

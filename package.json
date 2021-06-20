@@ -7,8 +7,10 @@
   ],
   "scripts": {
     "prepare": "manypkg check",
-    "dev": "ultra -r dev",
-    "publish-local": "ultra -r yalc publish"
+    "start": "ultra -r start",
+    "build": "ultra -r build",
+    "publish-local": "ultra -r yalc publish",
+    "templates": "ultra -r --filter 'esdx-starter-*'"
   },
   "dependencies": {
     "@changesets/cli": "^2.16.0",

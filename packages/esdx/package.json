@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "build": "esbuild src/index.ts --outdir=dist --platform=node",
-    "dev": "esbuild src/index.ts --outdir=dist --platform=node --watch"
+    "start": "esbuild src/index.ts --outdir=dist --platform=node --watch"
   },
   "type": "module",
   "dependencies": {
