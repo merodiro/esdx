@@ -8,7 +8,7 @@
   "scripts": {
     "prepare": "manypkg check",
     "start": "ultra -r start",
-    "build": "ultra -r build",
+    "build": "ultra build",
     "publish-local": "ultra -r yalc publish",
     "templates": "ultra -r --filter 'esdx-starter-*'"
   },
