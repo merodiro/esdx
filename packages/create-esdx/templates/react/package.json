@@ -3,7 +3,7 @@
   "name": "esdx-starter-react",
   "private": true,
   "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "types": "dist/index.d.ts",
   "source": "src/index.tsx",
   "type": "module",
   "files": [

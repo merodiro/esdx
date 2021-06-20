@@ -3,7 +3,7 @@
   "name": "esdx-starter-react-with-storybook",
   "private": true,
   "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "types": "dist/index.d.ts",
   "source": "src/index.tsx",
   "type": "module",
   "files": [
