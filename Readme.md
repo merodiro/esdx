@@ -2,9 +2,9 @@
 
 CLI for blazing speed package development
 
-Easily create typescript packages and enjoy the extreme speed from [esbuild](https://esbuild.github.io/) with a workflow heavly inspired (copied) from [TSDX](https://tsdx.io/)
+Easily create typescript packages and enjoy the extreme speed from [esbuild](https://esbuild.github.io/) with a workflow heavily inspired (copied) from [TSDX](https://tsdx.io/)
 
-⚠: this package is currently WIP and not ready for production use yet
+⚠Warning: this package is currently WIP and not ready for production use yet⚠
 
 ## Features
 
