@@ -1,0 +1,18 @@
+{
+  "name": "create-esdx",
+  "version": "0.0.0",
+  "main": "./index.js",
+  "author": "Amr Gad",
+  "license": "MIT",
+  "bin": {
+    "create-esdx": "./index.js"
+  },
+  "dependencies": {
+    "kolorist": "^1.5.0",
+    "minimist": "^1.2.5",
+    "prompts": "^2.4.1"
+  },
+  "devDependencies": {
+    "@types/prompts": "^2.0.13"
+  }
+}

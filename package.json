@@ -1,34 +1,24 @@
 {
-  "name": "esdx",
-  "version": "0.0.1",
-  "description": "build scripts based on esbuild",
-  "source": "src/index.ts",
-  "main": "dist/index.js",
-  "repository": "https://github.com/merodiro/esdx.git",
-  "author": "Amr Gad",
-  "license": "MIT",
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "packages/create-esdx/templates/*"
+  ],
   "scripts": {
-    "build": "esbuild src/index.ts --outdir=dist --platform=node",
-    "dev": "esbuild src/index.ts --outdir=dist --platform=node --watch"
+    "prepare": "manypkg check",
+    "start": "ultra -r start",
+    "build": "ultra -r build",
+    "publish-local": "ultra -r yalc publish",
+    "templates": "ultra -r --filter 'esdx-starter-*'"
   },
-  "type": "module",
   "dependencies": {
-    "chalk": "^4.1.0",
-    "esbuild": "^0.12.9",
-    "esbuild-node-externals": "^1.1.0",
-    "find-up": "^5.0.0",
-    "ora": "^5.4.0",
-    "pkg-dir": "^5.0.0",
-    "rollup": "^2.45.1",
-    "rollup-plugin-dts": "^3.0.1",
-    "yargs": "^16.2.0"
-  },
-  "bin": {
-    "esdx": "./dist/index.js"
-  },
-  "devDependencies": {
-    "@types/node": "^14.14.37",
-    "@types/yargs": "^16.0.1",
-    "typescript": "^4.2.4"
+    "@changesets/cli": "^2.16.0",
+    "@manypkg/cli": "^0.18.0",
+    "husky": "^6.0.0",
+    "prettier": "^2.2.1",
+    "pretty-quick": "^3.1.1",
+    "ultra-runner": "^3.10.5",
+    "yalc": "^1.0.0-pre.53"
   }
 }
