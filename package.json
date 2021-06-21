@@ -6,7 +6,7 @@
     "packages/create-esdx/templates/*"
   ],
   "scripts": {
-    "prepare": "manypkg check",
+    "prepare": "manypkg check && husky install",
     "start": "ultra -r start",
     "build": "ultra -r build",
     "publish-local": "ultra -r yalc publish",
