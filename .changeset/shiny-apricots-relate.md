@@ -1,5 +1,9 @@
 ---
-"create-esdx": minor
+'create-esdx': minor
 ---
 
-Add `prettier` and setup pre-commit hooks
+Add linting to templates:
+
+- `eslint`
+- `prettier`
+- pre commit hooks
