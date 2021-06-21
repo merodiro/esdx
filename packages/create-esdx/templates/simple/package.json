@@ -4,7 +4,6 @@
   "private": true,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "source": "src/index.ts",
   "type": "module",
   "files": [
     "dist",
@@ -60,5 +59,15 @@
   ],
   "jest": {
     "preset": "esdx"
+  },
+  "esdx": {
+    "entries": [
+      {
+        "source": "src/index.ts",
+        "format": "esm",
+        "output": "dist/index.js",
+        "types": "dist/index.d.ts"
+      }
+    ]
   }
 }

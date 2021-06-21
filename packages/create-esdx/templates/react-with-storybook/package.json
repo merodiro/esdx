@@ -4,7 +4,6 @@
   "private": true,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "source": "src/index.tsx",
   "type": "module",
   "files": [
     "dist",
@@ -24,6 +23,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
+  "dependencies": {},
   "peerDependencies": {
     "react": ">=16"
   },
@@ -50,6 +50,7 @@
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^6.0.0",
     "jest": "^27.0.4",
+    "prettier": "^2.3.1",
     "lint-staged": "^11.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -81,7 +82,14 @@
   "jest": {
     "preset": "esdx"
   },
-  "dependencies": {
-    "prettier": "^2.3.1"
+  "esdx": {
+    "entries": [
+      {
+        "source": "src/index.tsx",
+        "format": "esm",
+        "output": "dist/index.js",
+        "types": "dist/index.d.ts"
+      }
+    ]
   }
 }

@@ -2,38 +2,41 @@
 import chalk from 'chalk'
 import { build } from 'esbuild'
 import { nodeExternalsPlugin } from 'esbuild-node-externals'
-import findUp from 'find-up'
+import { sync as findUp } from 'find-up'
 import fs from 'fs'
 import ora from 'ora'
 import path from 'path'
-import pkgDir from 'pkg-dir'
+import { sync as pkgDir } from 'pkg-dir'
 import * as rollup from 'rollup'
 import dts from 'rollup-plugin-dts'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 
-async function findPaths() {
-  const root = await pkgDir()
+function findPaths() {
+  const root = pkgDir()
   const dist = path.resolve(root, 'dist')
 
   const manifest = path.resolve(root, 'package.json')
-  const tsconfig = await findUp('tsconfig.json', { cwd: root })
+  const tsconfig = findUp('tsconfig.json', { cwd: root })
 
   return { root, dist, manifest, tsconfig }
 }
 
-async function generateTypeDefs(argv) {
-  const paths = await findPaths()
+function loadPkg() {
+  const paths = findPaths()
   const pkg = JSON.parse(
     fs.readFileSync(paths.manifest, {
       encoding: 'utf8',
     }),
   )
+  return pkg
+}
 
+async function generateTypeDefs(argv, entry) {
   const rollupConfig = {
-    input: pkg.source,
+    input: entry.source,
     output: {
-      file: pkg.types,
+      file: entry.types,
     },
     plugins: [dts()],
   }
@@ -55,7 +58,7 @@ async function generateTypeDefs(argv) {
     const bundle = await rollup.rollup(rollupConfig)
 
     await bundle.write({
-      file: pkg.types,
+      file: entry.types,
     })
 
     await bundle.close()
@@ -64,33 +67,37 @@ async function generateTypeDefs(argv) {
 }
 
 async function createBuild(argv) {
-  const paths = await findPaths()
-  const pkg = JSON.parse(
-    fs.readFileSync(paths.manifest, {
-      encoding: 'utf8',
-    }),
-  )
+  for (const entry of argv.entries) {
+     await build({
+      entryPoints: [entry.source],
+      bundle: true,
+      minify: argv.minify,
+      watch: argv.watch,
+      format: entry.format,
+      platform: argv.platform,
+      plugins: [nodeExternalsPlugin()],
+      outfile: entry.output,
+    })
 
-  await build({
-    entryPoints: [pkg.source],
-    bundle: true,
-    minify: argv.minify,
-    watch: argv.watch,
-    format: 'esm',
-    platform: 'neutral',
-    plugins: [nodeExternalsPlugin()],
-    outfile: pkg.main,
-  })
-
-  if (pkg.types) {
-    generateTypeDefs(argv)
+    if (entry.types) {
+      generateTypeDefs(argv, entry)
+    }
   }
 }
 
 yargs(hideBin(process.argv))
   .usage('Usage: $0 <cmd> [options]')
-  .default('minify', false)
-  .command(['build', '$0'], 'the serve command', (argv) => {
-    createBuild(argv)
+  .options({
+    minify: { type: 'boolean', default: false },
+    platform: { type: 'string', default: 'neutral' },
+    entries: { type: 'array', demandOption: true },
   })
+  .command(
+    ['build', '$0'],
+    'the serve command',
+    (argv) => {
+      createBuild(argv)
+    },
+  )
+  .pkgConf('esdx')
   .demandCommand(1).argv
