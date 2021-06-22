@@ -1,5 +1,11 @@
 # create-esdx
 
+## 0.1.1
+
+### Patch Changes
+
+- d1c448c: Fix error while creating a package
+
 ## 0.1.0
 
 ### Minor Changes
