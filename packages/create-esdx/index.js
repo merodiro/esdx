@@ -6,7 +6,6 @@ import fs from 'fs'
 import { blue, cyan, magenta, red, yellow } from 'kolorist'
 import minimist from 'minimist'
 import path from 'path'
-import pkgDir from 'pkg-dir'
 import prompts from 'prompts'
 import url from 'url'
 
@@ -50,19 +49,6 @@ const TEMPLATES = new Set(
 
 const renameFiles = {
   _gitignore: '.gitignore',
-}
-
-async function getPkg() {
-  const root = await pkgDir()
-
-  const manifest = path.resolve(root, 'package.json')
-
-  const pkg = JSON.parse(
-    fs.readFileSync(manifest, {
-      encoding: 'utf8',
-    }),
-  )
-  return pkg
 }
 
 async function init() {
@@ -184,7 +170,15 @@ async function init() {
   for (const file of files.filter((f) => f !== 'package.json')) {
     write(file, null)
   }
-  const pkg = await getPkg()
+
+  const manifest = path.resolve(path.join(templateDir, `package.json`))
+
+  const pkg = JSON.parse(
+    fs.readFileSync(manifest, {
+      encoding: 'utf8',
+    }),
+  )
+
   delete pkg.private
 
   pkg.name = projectName
