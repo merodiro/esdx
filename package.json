@@ -10,15 +10,31 @@
     "start": "ultra -r start",
     "build": "ultra -r build",
     "publish-local": "ultra -r yalc publish",
-    "templates": "ultra -r --filter 'esdx-starter-*'"
+    "templates": "ultra -r --filter 'esdx-starter-*'",
+    "lint": "yarn eslint .",
+    "format": "prettier \"**/*\" --write --ignore-unknown"
   },
   "dependencies": {
     "@changesets/cli": "^2.16.0",
     "@manypkg/cli": "^0.18.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "@typescript-eslint/parser": "^4.28.0",
+    "eslint": "^7.29.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-unicorn": "^33.0.1",
     "husky": "^6.0.0",
-    "prettier": "^2.2.1",
-    "pretty-quick": "^3.1.1",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.1",
     "ultra-runner": "^3.10.5",
     "yalc": "^1.0.0-pre.53"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": "prettier --write"
   }
 }

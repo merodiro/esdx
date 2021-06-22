@@ -14,11 +14,11 @@
     "node": ">=10"
   },
   "scripts": {
+    "prepare": "esdx build && husky install",
     "start": "esdx --watch",
     "build": "esdx build",
     "test": "jest",
     "lint": "echo 'TODO lint'",
-    "prepare": "esdx build",
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
@@ -30,14 +30,35 @@
     "@types/jest": "^26.0.23",
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.8",
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "@typescript-eslint/parser": "^4.28.0",
     "esdx": "^0.0.2",
+    "eslint": "^7.29.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^6.0.0",
     "jest": "^27.0.4",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "size-limit": "^4.12.0",
     "tslib": "^2.3.0",
     "typescript": "^4.3.4"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "semi": false,
+    "printWidth": 80
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "size-limit": [
     {

@@ -2,11 +2,15 @@
 // https://github.com/vitejs/vite/blob/main/packages/create-app/index.js
 
 // @ts-check
-const fs = require('fs')
-const path = require('path')
-const argv = require('minimist')(process.argv.slice(2))
-const prompts = require('prompts')
-const { yellow, green, cyan, blue, magenta, lightRed, red } = require('kolorist')
+import fs from 'fs'
+import { blue, cyan, magenta, red, yellow } from 'kolorist'
+import minimist from 'minimist'
+import path from 'path'
+import pkgDir from 'pkg-dir'
+import prompts from 'prompts'
+import url from 'url'
+
+const argv = minimist(process.argv.slice(2))
 
 const cwd = process.cwd()
 
@@ -40,12 +44,25 @@ const FRAMEWORKS = [
   },
 ]
 
-const TEMPLATES = FRAMEWORKS.map(
-  (f) => (f.variants && f.variants.map((v) => v.name)) || [f.name],
-).reduce((a, b) => a.concat(b), [])
+const TEMPLATES = new Set(
+  FRAMEWORKS.flatMap((f) => (f.variants && f.variants.map((v) => v.name)) || [f.name]),
+)
 
 const renameFiles = {
   _gitignore: '.gitignore',
+}
+
+async function getPkg() {
+  const root = await pkgDir()
+
+  const manifest = path.resolve(root, 'package.json')
+
+  const pkg = JSON.parse(
+    fs.readFileSync(manifest, {
+      encoding: 'utf8',
+    }),
+  )
+  return pkg
 }
 
 async function init() {
@@ -74,7 +91,7 @@ async function init() {
             ` is not empty. Remove existing files and continue?`,
         },
         {
-          // @ts-expect-error
+          // @ts-expect-error currently untyped
           type: (_, { overwrite } = {}) => {
             if (overwrite == false) {
               throw new Error(red('✖') + ' Operation cancelled')
@@ -91,10 +108,10 @@ async function init() {
           validate: (dir) => isValidPackageName(dir) || 'Invalid package.json name',
         },
         {
-          type: template && TEMPLATES.includes(template) ? null : 'select',
+          type: template && TEMPLATES.has(template) ? null : 'select',
           name: 'framework',
           message:
-            typeof template === 'string' && !TEMPLATES.includes(template)
+            typeof template === 'string' && !TEMPLATES.has(template)
               ? `"${template}" isn't a valid template. Please choose from below: `
               : 'Select a framework:',
           initial: 0,
@@ -110,7 +127,6 @@ async function init() {
           type: (framework) => (framework && framework.variants ? 'select' : null),
           name: 'variant',
           message: 'Select a variant:',
-          // @ts-ignore
           choices: (framework) =>
             framework.variants.map((variant) => {
               const variantColor = variant.color
@@ -127,8 +143,8 @@ async function init() {
         },
       },
     )
-  } catch (cancelled) {
-    console.log(cancelled.message)
+  } catch (error) {
+    console.log(error.message)
     return
   }
 
@@ -148,7 +164,10 @@ async function init() {
 
   console.log(`\nScaffolding project in ${root}...`)
 
-  const templateDir = path.join(__dirname, `templates/${template}`)
+  const templateDir = path.join(
+    path.dirname(url.fileURLToPath(import.meta.url)),
+    `templates/${template}`,
+  )
 
   const write = (file, content) => {
     const targetPath = renameFiles[file]
@@ -163,11 +182,9 @@ async function init() {
 
   const files = fs.readdirSync(templateDir)
   for (const file of files.filter((f) => f !== 'package.json')) {
-    write(file)
+    write(file, null)
   }
-
-  const pkg = require(path.join(templateDir, `package.json`))
-
+  const pkg = await getPkg()
   delete pkg.private
 
   pkg.name = projectName
@@ -195,7 +212,7 @@ function copy(src, dest) {
 }
 
 function isValidPackageName(projectName) {
-  return /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(projectName)
+  return /^(?:@[\d*a-z~-][\d*._a-z~-]*\/)?[\da-z~-][\d._a-z~-]*$/.test(projectName)
 }
 
 function toValidPackageName(projectName) {
@@ -204,7 +221,7 @@ function toValidPackageName(projectName) {
     .toLowerCase()
     .replace(/\s+/g, '-')
     .replace(/^[._]/, '')
-    .replace(/[^a-z0-9-~]+/g, '-')
+    .replace(/[^\da-z~-]+/g, '-')
 }
 
 function copyDir(srcDir, destDir) {
@@ -236,6 +253,6 @@ function emptyDir(dir) {
   }
 }
 
-init().catch((e) => {
-  console.error(e)
+init().catch((error) => {
+  console.error(error)
 })
