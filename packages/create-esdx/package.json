@@ -4,12 +4,14 @@
   "main": "./index.js",
   "author": "Amr Gad",
   "license": "MIT",
+  "type": "module",
   "bin": {
     "create-esdx": "./index.js"
   },
   "dependencies": {
     "kolorist": "^1.5.0",
     "minimist": "^1.2.5",
+    "pkg-dir": "^5.0.0",
     "prompts": "^2.4.1"
   },
   "devDependencies": {

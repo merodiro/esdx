@@ -1,16 +1,16 @@
 #!/usr/bin/env node
-import yargs from 'yargs'
-import { hideBin } from 'yargs/helpers'
-import fs from 'fs'
-import { build } from 'esbuild'
 import chalk from 'chalk'
-import pkgDir from 'pkg-dir'
-import findUp from 'find-up'
-import path from 'path'
+import { build } from 'esbuild'
 import { nodeExternalsPlugin } from 'esbuild-node-externals'
+import findUp from 'find-up'
+import fs from 'fs'
+import ora from 'ora'
+import path from 'path'
+import pkgDir from 'pkg-dir'
 import * as rollup from 'rollup'
 import dts from 'rollup-plugin-dts'
-import ora from 'ora'
+import yargs from 'yargs'
+import { hideBin } from 'yargs/helpers'
 
 async function findPaths() {
   const root = await pkgDir()
@@ -90,12 +90,7 @@ async function createBuild(argv) {
 yargs(hideBin(process.argv))
   .usage('Usage: $0 <cmd> [options]')
   .default('minify', false)
-  .command(
-    ['build', '$0'],
-    'the serve command',
-    () => {},
-    (argv) => {
-      createBuild(argv)
-    },
-  )
+  .command(['build', '$0'], 'the serve command', (argv) => {
+    createBuild(argv)
+  })
   .demandCommand(1).argv
