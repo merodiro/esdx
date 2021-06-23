@@ -1,5 +1,12 @@
 # create-esdx
 
+## 0.1.2
+
+### Patch Changes
+
+- 888ce4c: Dual pubish templates by default
+- a8d4914: fix package name when creating a package
+
 ## 0.1.1
 
 ### Patch Changes
