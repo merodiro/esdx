@@ -2,10 +2,9 @@
   "version": "0.1.0",
   "name": "esdx-starter-react",
   "private": true,
-  "main": "dist/index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
-  "source": "src/index.tsx",
-  "type": "module",
   "files": [
     "dist",
     "src"
@@ -68,5 +67,20 @@
   ],
   "jest": {
     "preset": "esdx"
+  },
+  "esdx": {
+    "entries": [
+      {
+        "source": "src/index.tsx",
+        "format": "esm",
+        "output": "dist/index.esm.js",
+        "types": "dist/index.d.ts"
+      },
+      {
+        "source": "src/index.tsx",
+        "format": "cjs",
+        "output": "dist/index.cjs.js"
+      }
+    ]
   }
 }
