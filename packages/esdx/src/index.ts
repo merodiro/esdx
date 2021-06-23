@@ -68,7 +68,7 @@ async function generateTypeDefs(argv, entry) {
 
 async function createBuild(argv) {
   for (const entry of argv.entries) {
-     await build({
+    await build({
       entryPoints: [entry.source],
       bundle: true,
       minify: argv.minify,
@@ -95,6 +95,9 @@ yargs(hideBin(process.argv))
   .command(
     ['build', '$0'],
     'the serve command',
+    () => {
+      // no-op
+    },
     (argv) => {
       createBuild(argv)
     },
