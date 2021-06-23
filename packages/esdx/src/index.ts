@@ -94,7 +94,7 @@ yargs(hideBin(process.argv))
   })
   .command(
     ['build', '$0'],
-    'the serve command',
+    'Build your project',
     () => {
       // no-op
     },

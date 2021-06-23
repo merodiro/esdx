@@ -2,9 +2,9 @@
   "version": "0.1.0",
   "name": "esdx-starter-simple",
   "private": true,
-  "main": "dist/index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
-  "type": "module",
   "files": [
     "dist",
     "src"
@@ -65,8 +65,13 @@
       {
         "source": "src/index.ts",
         "format": "esm",
-        "output": "dist/index.js",
+        "output": "dist/index.esm.js",
         "types": "dist/index.d.ts"
+      },
+      {
+        "source": "src/index.ts",
+        "format": "cjs",
+        "output": "dist/index.cjs.js"
       }
     ]
   }
