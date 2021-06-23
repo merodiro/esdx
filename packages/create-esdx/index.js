@@ -63,7 +63,7 @@ async function init() {
     result = await prompts(
       [
         {
-          type: targetDir ? null : 'text',
+          type: 'text',
           name: 'projectName',
           message: 'Project name:',
           initial: defaultProjectName,
