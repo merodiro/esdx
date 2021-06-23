@@ -1,6 +1,6 @@
 {
   "name": "esdx",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "build scripts based on esbuild",
   "source": "src/index.ts",
   "main": "dist/index.js",
