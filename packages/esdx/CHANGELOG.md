@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- 888ce4c: ## Add `esdx` config support in `package.json`
+- 888ce4c: Add `esdx` config support in `package.json`
 
   This allows `esdx` to be more flexible and allows the following supporting the following usecases:
 
@@ -62,6 +62,26 @@
     }
   }
   ```
+
+## Migration guide
+1. remove `source` attribute from `package.json`
+2. add the following code to `package.json` if you want the previous behavior, or you can use one of the examples above to support multiple formats or entries.
+```json
+{
+      "main": "dist/index.js",
+      "type": "module",
+      "types": "dist/index.d.ts",
+      "esdx": {
+        "entries": [
+          {
+            "source": "src/index.tsx",
+            "format": "esm",
+            "output": "dist/index.js",
+            "types": "dist/index.d.ts"
+          }
+        ]
+      }
+```
 
 ## 0.0.2
 
