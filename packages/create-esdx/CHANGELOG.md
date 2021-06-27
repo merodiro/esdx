@@ -1,5 +1,11 @@
 # create-esdx
 
+## 0.1.3
+
+### Patch Changes
+
+- 1ac6055: Add `target` to `tsconfig.json` in templates
+
 ## 0.1.2
 
 ### Patch Changes
