@@ -34,11 +34,11 @@ jobs:
       - name: Install packages
         run: yarn install
 
-      - name: Lint
-        run: yarn lint
-
       - name: Build
         run: yarn build
+
+      - name: Lint
+        run: yarn lint
 
       - name: Test
         run: yarn templates test
