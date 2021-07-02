@@ -20,7 +20,7 @@
     "find-up": "^5.0.0",
     "ora": "^5.4.1",
     "pkg-dir": "^5.0.0",
-    "rollup": "^2.52.4",
+    "rollup": "^2.52.7",
     "rollup-plugin-dts": "^3.0.2",
     "yargs": "^17.0.1"
   },
