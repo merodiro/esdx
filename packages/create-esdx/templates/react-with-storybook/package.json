@@ -28,7 +28,7 @@
     "react": ">=16"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.6",
+    "@babel/core": "^7.14.8",
     "@size-limit/preset-small-lib": "^5.0.1",
     "@storybook/addon-actions": "^6.3.4",
     "@storybook/addon-essentials": "^6.3.4",
