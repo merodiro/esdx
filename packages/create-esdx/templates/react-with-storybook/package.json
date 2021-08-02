@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
-    "@size-limit/preset-small-lib": "^5.0.1",
+    "@size-limit/preset-small-lib": "^5.0.2",
     "@storybook/addon-actions": "^6.3.4",
     "@storybook/addon-essentials": "^6.3.6",
     "@storybook/addon-links": "^6.3.6",
