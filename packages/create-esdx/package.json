@@ -5,9 +5,7 @@
   "author": "Amr Gad",
   "license": "MIT",
   "type": "module",
-  "bin": {
-    "create-esdx": "./index.js"
-  },
+  "bin": "./index.js",
   "dependencies": {
     "kolorist": "^1.5.0",
     "minimist": "^1.2.5",
