@@ -21,7 +21,7 @@
     "ora": "^5.4.1",
     "pkg-dir": "^5.0.0",
     "rollup": "^2.56.2",
-    "rollup-plugin-dts": "^3.0.2",
+    "rollup-plugin-dts": "^4.0.0",
     "yargs": "^17.1.1"
   },
   "bin": {
