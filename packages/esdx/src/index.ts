@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import chalk from 'chalk'
-import { build } from 'esbuild'
+import * as esbuild from 'esbuild'
 import { nodeExternalsPlugin } from 'esbuild-node-externals'
-import { sync as findUp } from 'find-up'
+import { findUpSync } from 'find-up'
 import fs from 'fs'
-import ora from 'ora'
+import ora, { Ora } from 'ora'
 import path from 'path'
 import { sync as pkgDir } from 'pkg-dir'
 import * as rollup from 'rollup'
@@ -17,7 +17,7 @@ function findPaths() {
   const dist = path.resolve(root, 'dist')
 
   const manifest = path.resolve(root, 'package.json')
-  const tsconfig = findUp('tsconfig.json', { cwd: root })
+  const tsconfig = findUpSync('tsconfig.json', { cwd: root })
 
   return { root, dist, manifest, tsconfig }
 }
@@ -44,7 +44,7 @@ async function generateTypeDefs(argv, entry) {
   if (argv.watch) {
     const watcher = rollup.watch(rollupConfig)
 
-    let spinner: ora.Ora
+    let spinner: Ora
 
     watcher.on('event', (event) => {
       if (event.code === 'START') {
@@ -68,7 +68,7 @@ async function generateTypeDefs(argv, entry) {
 
 async function createBuild(argv) {
   for (const entry of argv.entries) {
-    await build({
+    const result = await esbuild.build({
       entryPoints: [entry.source],
       bundle: true,
       minify: argv.minify,
@@ -77,7 +77,12 @@ async function createBuild(argv) {
       platform: argv.platform,
       plugins: [nodeExternalsPlugin()],
       outfile: entry.output,
+      metafile: true,
+      color: true,
     })
+
+    const text = await esbuild.analyzeMetafile(result.metafile)
+    console.log(text)
 
     if (entry.types) {
       generateTypeDefs(argv, entry)
