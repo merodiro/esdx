@@ -1,5 +1,1 @@
 version = 1
-
-[merge.automerge_dependencies]
-versions = ["minor", "patch"]
-usernames = ["dependabot"]
