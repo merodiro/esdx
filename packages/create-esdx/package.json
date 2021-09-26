@@ -5,15 +5,13 @@
   "author": "Amr Gad",
   "license": "MIT",
   "type": "module",
-  "bin": {
-    "create-esdx": "./index.js"
-  },
+  "bin": "./index.js",
   "dependencies": {
     "kolorist": "^1.5.0",
     "minimist": "^1.2.5",
     "prompts": "^2.4.1"
   },
   "devDependencies": {
-    "@types/prompts": "^2.0.14"
+    "@types/prompts": "^2.4.0"
   }
 }
