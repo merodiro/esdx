@@ -1,0 +1,83 @@
+{
+  "version": "0.1.0",
+  "name": "esdx-starter-simple-mocha",
+  "private": true,
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "prepare": "esdx build && husky install",
+    "start": "esdx --watch",
+    "build": "esdx build",
+    "test": "mocha",
+    "test:coverage": "c8 --all --src src --reporter=html --reporter=text mocha",
+    "test:watch": "mocha --watch",
+    "lint": "echo 'TODO lint'",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^5.0.4",
+    "@types/chai": "^4.2.22",
+    "@types/mocha": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.31.2",
+    "@typescript-eslint/parser": "^4.31.2",
+    "chai": "^4.3.4",
+    "esbuild-runner": "^2.2.1",
+    "esdx": "^0.1.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.1.2",
+    "mocha": "^9.1.2",
+    "prettier": "^2.4.1",
+    "size-limit": "^5.0.4",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.3"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "semi": false,
+    "printWidth": 80
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "size-limit": [
+    {
+      "path": "dist/index.esm.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/index.cjs.js",
+      "limit": "10 KB"
+    }
+  ],
+  "esdx": {
+    "entries": [
+      {
+        "source": "src/index.ts",
+        "format": "esm",
+        "output": "dist/index.esm.js",
+        "types": "dist/index.d.ts"
+      },
+      {
+        "source": "src/index.ts",
+        "format": "cjs",
+        "output": "dist/index.cjs.js"
+      }
+    ]
+  }
+}
