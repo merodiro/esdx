@@ -6,14 +6,14 @@ import { findUpSync } from 'find-up'
 import fs from 'fs'
 import ora, { Ora } from 'ora'
 import path from 'path'
-import { sync as pkgDir } from 'pkg-dir'
+import { packageDirectorySync } from 'pkg-dir'
 import * as rollup from 'rollup'
 import dts from 'rollup-plugin-dts'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 
 function findPaths() {
-  const root = pkgDir()
+  const root = packageDirectorySync()
   const dist = path.resolve(root, 'dist')
 
   const manifest = path.resolve(root, 'package.json')
