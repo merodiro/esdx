@@ -1,2 +1,4 @@
 packages:
-  - 'packages/**'
+  - 'packages/*'
+  - 'packages/create-esdx/templates/*'
+  - 'packages/create-esdx/templates/*/example'
