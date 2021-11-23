@@ -13,7 +13,6 @@
     "node": ">=12"
   },
   "scripts": {
-    "prepare": "esdx build",
     "start": "esdx --watch",
     "build": "esdx build",
     "test": "jest",
