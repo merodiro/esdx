@@ -58,6 +58,22 @@
           "^build"
         ]
       },
+      "example-react#build": {
+        "outputs": [
+          "dist/**"
+        ],
+        "dependsOn": [
+          "esdx-starter-react#build"
+        ]
+      },
+      "example-storybook#build": {
+        "outputs": [
+          "dist/**"
+        ],
+        "dependsOn": [
+          "esdx-starter-react-with-storybook#build"
+        ]
+      },
       "test": {
         "outputs": [],
         "dependsOn": [
