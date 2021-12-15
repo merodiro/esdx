@@ -17,11 +17,11 @@
     "esbuild": "^0.14.5",
     "esbuild-jest": "^0.5.0",
     "esbuild-node-externals": "^1.4.1",
-    "find-up": "^6.1.0",
+    "find-up": "^6.2.0",
     "ora": "^6.0.1",
     "pkg-dir": "^6.0.1",
     "rollup": "^2.61.1",
-    "rollup-plugin-dts": "^4.0.0",
+    "rollup-plugin-dts": "^4.0.1",
     "yargs": "^17.3.0"
   },
   "bin": "./bin/index.js",
