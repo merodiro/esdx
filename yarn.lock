@@ -3980,7 +3980,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prompts@npm:^2.0.14":
+"@types/prompts@npm:^2.4.0":
   version: 2.4.0
   resolution: "@types/prompts@npm:2.4.0"
   checksum: ec75655f07fbc3cb2df60a3e3bdd13bfda0554a16f5541285c4b1cc0610756838a2863dccfc911cbb1385492054c07210512164e3dbef272ec638d631783b278
@@ -6715,7 +6715,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "create-esdx@workspace:packages/create-esdx"
   dependencies:
-    "@types/prompts": ^2.0.14
+    "@types/prompts": ^2.4.0
     kolorist: ^1.5.0
     minimist: ^1.2.5
     prompts: ^2.4.2
