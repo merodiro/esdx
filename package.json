@@ -63,6 +63,7 @@
           "dist/**"
         ],
         "dependsOn": [
+          "^build",
           "esdx-starter-react#build"
         ]
       },
@@ -71,6 +72,7 @@
           "dist/**"
         ],
         "dependsOn": [
+          "^build",
           "esdx-starter-react-with-storybook#build"
         ]
       },
