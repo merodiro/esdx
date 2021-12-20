@@ -38,14 +38,14 @@
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "esdx": "^0.1.0",
-    "eslint": "^8.4.1",
+    "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^7.0.4",
     "jest": "^27.4.5",
-    "lint-staged": "^12.1.2",
+    "lint-staged": "^12.1.3",
     "prettier": "^2.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -54,7 +54,7 @@
     "storybook-builder-vite": "^0.1.11",
     "tslib": "^2.3.1",
     "typescript": "^4.5.4",
-    "vite": "^2.7.2"
+    "vite": "^2.7.4"
   },
   "prettier": {
     "singleQuote": true,
