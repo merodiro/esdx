@@ -20,12 +20,15 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
+          cache: 'yarn'
 
       - name: Install Dependencies
-        run: yarn
+        run: yarn install
 
       - name: Build packages
-        run: yarn build
+        run: yarn run build
+        env:
+          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets

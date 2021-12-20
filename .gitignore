@@ -122,3 +122,4 @@ apps/startupsgalaxy/.env.development
 
 .yalc
 yalc.lock
+.turbo
