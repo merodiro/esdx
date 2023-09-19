@@ -55,7 +55,7 @@ async function init() {
   let targetDir = argv._[0]
   let template = argv.template || argv.t
 
-  const defaultProjectName = !targetDir ? 'hello-world' : targetDir
+  const defaultProjectName = targetDir || 'hello-world'
 
   let result = {}
 
@@ -213,9 +213,9 @@ function toValidPackageName(projectName) {
   return projectName
     .trim()
     .toLowerCase()
-    .replace(/\s+/g, '-')
+    .replaceAll(/\s+/g, '-')
     .replace(/^[._]/, '')
-    .replace(/[^\da-z~-]+/g, '-')
+    .replaceAll(/[^\da-z~-]+/g, '-')
 }
 
 function copyDir(srcDir, destDir) {
@@ -247,6 +247,8 @@ function emptyDir(dir) {
   }
 }
 
-init().catch((error) => {
+try {
+  await init()
+} catch (error) {
   console.error(error)
-})
+}

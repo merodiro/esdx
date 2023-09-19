@@ -23,13 +23,10 @@ function findPaths() {
   return { root, dist, manifest, tsconfig }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function loadPkg() {
   const paths = findPaths()
-  const pkg = JSON.parse(
-    fs.readFileSync(paths.manifest, {
-      encoding: 'utf8',
-    }),
-  )
+  const pkg = JSON.parse(fs.readFileSync(paths.manifest, { encoding: 'utf8' }))
   return pkg
 }
 
@@ -69,21 +66,26 @@ async function generateTypeDefs(argv, entry) {
 
 async function createBuild(argv) {
   for (const entry of argv.entries) {
-    const result = await esbuild.build({
+    const config: esbuild.BuildOptions = {
       entryPoints: [entry.source],
       bundle: true,
       minify: argv.minify,
-      watch: argv.watch,
       format: entry.format,
       platform: argv.platform,
       plugins: [nodeExternalsPlugin()],
       outfile: entry.output,
       metafile: true,
       color: true,
-    })
+    }
+    if (argv.watch) {
+      const ctx = await esbuild.context(config)
+      await ctx.watch({})
+    } else {
+      const result = await esbuild.build(config)
 
-    const text = await esbuild.analyzeMetafile(result.metafile)
-    console.log(text)
+      const text = await esbuild.analyzeMetafile(result.metafile)
+      console.log(text)
+    }
 
     if (entry.types) {
       generateTypeDefs(argv, entry)

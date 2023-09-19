@@ -1,0 +1,24 @@
+{
+  "pipeline": {
+    "start": {
+      "outputs": [],
+      "dependsOn": ["^start"]
+    },
+    "build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build"]
+    },
+    "example-react#build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build", "esdx-starter-react#build"]
+    },
+    "example-storybook#build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build", "esdx-starter-react-with-storybook#build"]
+    },
+    "test": {
+      "outputs": [],
+      "dependsOn": ["build"]
+    }
+  }
+}

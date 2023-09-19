@@ -6,6 +6,7 @@
     "esModuleInterop": true,
     "module": "ESNext",
     "allowJs": true,
-    "checkJs": true
+    "checkJs": true,
+    "noEmit": true
   }
 }

@@ -64,8 +64,10 @@
   ```
 
 ## Migration guide
+
 1. remove `source` attribute from `package.json`
 2. add the following code to `package.json` if you want the previous behavior, or you can use one of the examples above to support multiple formats or entries.
+
 ```json
 {
       "main": "dist/index.js",
